@@ -1,0 +1,56 @@
+﻿@using WebCoSo.Models
+@{
+    ViewBag.Title = "Index";
+}
+<div class="hero-wrap hero-bread" style="background-image: url(../Content/images/logo3.jpg);">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href='@Url.Action("Index", "Home")'>Trangc hủ</a></span></p>
+                <h1 class="mb-0 bread">Các loại rau lá</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 mb-5 text-center">
+                <h3>Rau lá</h3>
+            </div>
+        </div>
+        <div class="row">
+            @{
+                int n = 1;
+                foreach (SanPham j in CosoKtpm.getProductsByLoaiSP(1))
+                {
+                    <div class="col-md-6 col-lg-3 ftco-animate">
+                        <div class="product">
+                            <a href='@Url.Action("Index", "ProductDetails", new { maSanPham = j.MaSP })' class="img-prod">
+                                       <img class="img-fluid" src="@j.HinhDD">
+                                       <span class="status">@j.GiamGia</span>
+                                       <div class="overlay"></div>
+                            </a>
+                            <div class="text py-3 pb-4 px-3 text-center">
+                                <h3><a href='@Url.Action("Index", "ProductDetails", new { maSanPham = j.MaSP })'>@j.TenSP</a></h3>
+                                <div class="d-flex">
+                                    <div class="pricing">
+                                        <p class="price"><span class="price-sale">@String.Format("{0:#,##0 đ }", j.GiaBan)</span></p>
+                                    </div>
+                                </div>
+
+                                @using (Html.BeginForm("AddToCart", "Home", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="maSP" value="@j.MaSP" />
+                                    <button class="btn btn-primary">Chọn mua</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+

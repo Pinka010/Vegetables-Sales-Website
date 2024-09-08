@@ -1,0 +1,248 @@
+﻿@using WebCoSo.Models;
+
+@{
+    ViewBag.Title = "Index";
+}
+<section id="home-section" class="hero">
+    <div class="home-slider owl-carousel">
+        <div class="slider-item" style="background-image: url(../Content/images/logo1.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-md-12 ftco-animate text-center">
+                        <h1 class="mb-2">Rau &amp; củ quả, trái cây tươi sạch</h1>
+                        <h2 class="subheading mb-4">Người bạn đồng hành của sức khỏe &amp; sắc đẹp</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="slider-item" style="background-image: url(../Content/images/logo2.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-sm-12 ftco-animate text-center">
+                        <h1 class="mb-2">100% rau sạch &amp; thực phẩm hữu cơ</h1>
+                        <h2 class="subheading mb-4">Nhân đôi sức khỏe &amp; chia sẻ niềm vui</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row no-gutters ftco-services">
+            <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services mb-md-0 mb-4">
+                    <div class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
+                        <span class="flaticon-shipped"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Miễn phí vận chuyển</h3>
+                        <span>Cho đơn hàng trên 150.000đ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services mb-md-0 mb-4">
+                    <div class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
+                        <span class="flaticon-diet"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Đảm bảo tươi - ngon - sạch</h3>
+                        <span>Vì sức khỏe cộng đồng</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services mb-md-0 mb-4">
+                    <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
+                        <span class="flaticon-award"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Đạt chất lượng cao</h3>
+                        <span>Chất lượng sản phẩm</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 services mb-md-0 mb-4">
+                    <div class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
+                        <span class="flaticon-customer-service"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Hỗ trợ</h3>
+                        <span>Sẵn sàng 24/24</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-category ftco-no-pt">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6 order-md-last align-items-stretch d-flex">
+                        <div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(../Content/images/category.jpg); ">
+                            <div class="text text-center">
+                                <h2>AioBara *_*</h2>
+                                <p>Bảo vệ sức khỏe của mọi nhà</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(../Content/images/logo6.jpg); ">
+                            <div class="text px-3 py-1">
+                                <h2 class="mb-0"><a href='@Url.Action("Index","Vegetable")'>Rau lá</a></h2>
+                            </div>
+                        </div>
+                        <div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(../Content/images/logo7.jpg); ">
+                            <div class="text px-3 py-1">
+                                <h2 class="mb-0"><a href='@Url.Action("Index","Fruit")'>Củ quả</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(../Content/images/logo4.jpg); ">
+                    <div class="text px-3 py-1">
+                        <h2 class="mb-0"><a href='@Url.Action("Index","Mushroom")'>Nấm</a></h2>
+                    </div>
+                </div>
+                <div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(../Content/images/logo5.jpg); ">
+                    <div class="text px-3 py-1">
+                        <h2 class="mb-0"><a href='@Url.Action("Index","Fruit2")'>Trái cây</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <span class="subheading">Sản phẩm nổi bật</span>
+                <h2 class="mb-4">Sản phẩm của chúng tôi</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            @{
+                int m = 0;
+                foreach (LoaiSP i in CosoKtpm.getCategorties())
+                {
+                    <div class="col-md-6 col-lg-3 ftco-animate @(m++ ==0?"active":"")" id="@i.MaLoai" aria-labelledby="@i.MaLoai">
+                        @{ int n = 1;
+                            foreach (SanPham j in CosoKtpm.getProductsByLoaiSP(i.MaLoai))
+                            {
+                                <div class="product">
+                                    <a href='@Url.Action("Index", "ProductDetails", new { maSanPham = j.MaSP })' class="img-prod">
+                                        <img class="img-fluid" src="@j.HinhDD">
+                                        <span class="status">@j.GiamGia</span>
+                                        <div class="overlay"></div>
+                                    </a>
+                                    <div class="text py-3 pb-4 px-3 text-center">
+                                        <h3><a href='@Url.Action("Index", "ProductDetails", new { maSanPham = j.MaSP })'>@j.TenSP</a></h3>
+                                        <div class="d-flex">
+                                            <div class="pricing">
+                                                <p class="price"><span class="price-sale">@String.Format("{0:#,##0 đ }", j.GiaBan)</span></p>
+                                            </div>
+                                        </div>
+                                            <div class="text py-3 pb-4 px-3 text-center">
+                                                
+                                                @using(Html.BeginForm("AddToCart", "Home", FormMethod.Post))
+                                                { 
+                                                    <input type="hidden" name="maSP" value="@j.MaSP" />
+                                                    <button class="btn btn-primary">Chọn mua</button>
+                                                }
+                                            </div>
+                                    </div>
+                                </div>
+                                if (n++ == 4)
+                                {
+                                     break;
+                                }
+                            }
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section img" style="background-image: url(../Content/images/bg_3.jpg);">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
+                <span class="subheading">Sale khủng giành cho mọi nhà</span>
+                <h2 class="mb-4">Giao dịch trong ngày</h2>
+                <h3><a href="#">Xà lách</a></h3>
+                <span class="price">Từ 23,000đ <a href="#">giảm còn 17,000đ</a></span>
+                <div id="timer" class="d-flex mt-5">
+                    <div class="time" id="days"></div>
+                    <div class="time pl-3" id="hours"></div>
+                    <div class="time pl-3" id="minutes"></div>
+                    <div class="time pl-3" id="seconds"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section testimony-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <span class="subheading">Bài viết</span>
+                <h2 class="mb-4">Bài viết nổi bật</h2>
+            </div>
+        </div>
+        <div class="row ftco-animate">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel">
+                    <div class="item">
+                        @{
+                                int t = 1;
+                                foreach (BaiViet k in CosoKtpm.getArticle(1))
+                                {
+                                <div class="testimony-wrap">
+                                    <div class="thumb">
+                                        <img src="@k.HinhDD" alt=""/>
+                                    </div>
+                                    <div class="text text-center">
+                                        <div class="date">
+                                            <p>@string.Format("{0: dd MMMM yyyy}", k.NgayDang) in <a href="#">@(k.LoaiTin.Equals("QC")?"Quảng cáo":"Tin tức")</a></p>
+                                        </div>
+                                        <h5><a href="@Url.Action("Index", "Blog", new { MaBV = k.MaBV})">@k.TenBV</a></h5>
+                                        <div class="blog-text">
+                                            @k.NdTomTat.Substring(0, 50)
+                                        </div>
+                                    </div>
+                                </div>
+                                if (t++ == 4)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,42 @@
+﻿@using WebCoSo.Models;
+@{
+    ViewBag.Title = "Index";
+    SanPham i = ViewData["SpCanXem"] as SanPham;
+}
+<div class="hero-wrap hero-bread" style="background-image: url(../Content/images/logo3.jpg);">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="@Url.Action("Index","Home")">Trang chủ</a></span>
+                <h1 class="mb-0 bread">Chi tiết sản phẩm</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-5 ftco-animate">
+                <a href="@i.HinhDD" class="image-popup"><img src="@i.HinhDD" class="img-fluid" alt="@i.TenSP"></a>
+            </div>
+            <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                <h3>@i.NdTomTat</h3>
+                <p>@i.NoiDung</p>
+                <p class="price">
+                    <h5>Giá:<span>@string.Format("{0: #,##0 đ}", i.GiaBan)</span></h5></p>
+                <div class="row mt-4">
+                    <div class="w-100"></div>
+                    <div class="col-md-12">
+                        <p style="color: #000;">@i.DVT</p>
+                    </div>
+                </div>
+                @using (Html.BeginForm("AddToCart", "Home", FormMethod.Post))
+                {
+                    <input type="hidden" name="maSP" value="@i.MaSP" />
+                    <button class="btn btn-default">Chọn mua</button>
+                }
+            </div>
+        </div>
+    </div>
+</section>

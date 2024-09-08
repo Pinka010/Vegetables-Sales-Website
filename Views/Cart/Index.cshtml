@@ -1,0 +1,103 @@
+﻿@using WebCoSo.Models
+@{
+    ViewBag.Title = "Index";
+    CartShop x = ViewData["Carts"] as CartShop;
+
+}
+<div class="hero-wrap hero-bread" style="background-image: url(../Content/images/logo3.jpg);">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href='@Url.Action("Index","Home")'>Trang chủ</a></span> <span></span></p>
+                <h1 class="mb-0 bread">Giỏ hàng</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th>&nbsp;</th>
+                                <th>Hình sản phẩm </th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (CtDonHang i in x.SanPhamDC.Values)
+                                {
+                                    <tr class="text-center">
+                                        <td class="cart_delete">
+                                            @using (Html.BeginForm("RemoveItem", "Cart", FormMethod.Post))
+                                             {
+                                                <input type="hidden" name="maSP" value="@i.MaSP" />
+                                                <button class="ion-ios-close"></button>
+                                             }
+                                        </td>
+                                        <td class="image-prod">
+                                            <div class="img">
+                                                <a href="#"><img class="img-fluid" src="@CosoKtpm.getImageOfProductByID(i.MaSP)" alt="" /></a>
+                                            </div>
+                                        </td>
+
+                                        <td class="product-name">
+                                            <h3>@CosoKtpm.getNameOfProductByID(i.MaSP)</h3>
+                                        </td>
+
+                                        <td class="price">@String.Format("{0:#,##0 đ }", i.GiaBan)</td>
+
+                                        <td class="quantity">
+                                            <div class="input-group mb-3">
+                                                @using (Html.BeginForm("Increase", "Cart", FormMethod.Post))
+                                                {
+                                                    <input type="hidden" name="maSP" value="@i.MaSP" />
+                                                    <button class="cart_quantity_up"> + </button>
+                                                }
+                                                <input type="text" name="quantity" class="quantity form-control input-number" value="@i.SoLuong" min="1" max="100">
+                                                @using (Html.BeginForm("Decrease", "Cart", FormMethod.Post))
+                                                {
+                                                    <input type="hidden" name="maSP" value="@i.MaSP" />
+                                                    <button class="cart-detail-down"> - </button>
+                                                }
+                                            </div>
+                                        </td>
+
+                                        <td class="total">@String.Format("{0:#,##0 đ }", x.moneyOfOneProduct(i))</td>
+                                    </tr><!-- END TR-->
+                                }
+                            }
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-lg-12 mt-5 cart-wrap ftco-animate">
+                <div class="cart-total mb-3">
+                    <h3>Thanh toán</h3>
+                    <p class="d-flex">
+                        <span>Tổng tiền hàng</span>
+                        <span>@String.Format("{0:#,##0 đ }", x.totalOfCartShop())</span>
+                    </p>
+                    <p class="d-flex">
+                        <span>Thuế VAT 10%</span>
+                        <span>@String.Format("{0:#,##0 đ }", (x.totalOfCartShop() * 10) / 100)</span>
+                    </p>
+                    <hr>
+                    <p class="d-flex total-price">
+                        <span>Tổng thành tiền</span>
+                        <span> @String.Format("{0:#,##0 đ }", x.totalOfCartShop() + (x.totalOfCartShop() * 10) / 100)</span>
+                    </p>
+                </div>
+                <p><a href='@Url.Action("Index","Checkout")' class="btn btn-primary py-3 px-4">Mua hàng</a></p>
+            </div>
+        </div>
+    </div>
+</section>

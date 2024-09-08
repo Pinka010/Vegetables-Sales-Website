@@ -1,0 +1,136 @@
+﻿@using WebCoSo.Models;
+@{
+    ViewBag.Title = "Index";
+    CartShop x = ViewData["Cart"] as CartShop;
+}
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index","Home")'>Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Đơn đặt hàng</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+<!-- Content Wrapper. Contains page content -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <!-- Content Header (Page header) -->
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Đặt hàng thành công</h1>
+                </div>
+            </div>
+            <!-- Main content -->
+            <section class="invoice">
+                <!-- /.row --
+                <!-- Table row -->
+                <div class="row">
+                    <div class="col-lg-12 table-responsive">
+                        <div class="odr-box">
+                            <div class="title-left">
+                                <h3>Thông tin đơn hàng</h3>
+                            </div>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Giá bán</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ foreach (CtDonHang i in x.SanPhamDC.Values)
+                                    {
+                                        <tr>
+                                            <td class="thumbnail-img">
+                                                <a href="#"><img class="img-fluid" src="@CosoKtpm.getImageOfProductByID(i.MaSP)" alt="" /></a>
+                                            </td>
+                                            <td class="name-pr">
+                                                <a href="#">@CosoKtpm.getNameOfProductByID(i.MaSP)</a>
+                                            </td>
+                                            <td class="price-pr">
+                                                <p>@String.Format("{0:#,##0 đ }", i.GiaBan)</p>
+                                            </td>
+                                            <td quantity-box>
+                                                <p>@i.SoLuong</p>
+                                            </td>
+                                            <td class="total-pr">
+                                                <p>@String.Format("{0:#,##0 đ }", x.moneyOfOneProduct(i))</p>
+                                            </td>
+                                        </tr>
+                                    } }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <!-- accepted payments column -->
+                    <div class="col-lg-6">
+                        <div class="odr-box">
+                            <div class="title-left">
+                                <h3>AioBara xin cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi</h3>
+                            </div>
+                        </div>
+                        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                            Quý khách đã nhận hàng và thanh toán đầy đủ, nếu sản phảm không đúng với thông tin, quý khách có thể trả lại không cần lý do và miễn phí ship.
+                        </p>
+                        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                            Xin cảm ơn khách hàng đã ủng hộ Shop. Xin hãy đánh giá giúp shop 5 sao nhé. Cảm ơn quý khách đã ủng hộ shop.
+                        </p>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-lg-6">
+                        <div class="order-box">
+                            <div class="title-left">
+                                <h3>Đơn hàng của bạn</h3>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Tổng trị giá</h4>
+                                <div class="ml-auto font-weight-bold">@String.Format("{0:#,##0 đ }", x.totalOfCartShop())</div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Thuế</h4>
+                                <div class="ml-auto font-weight-bold">@String.Format("{0:#,##0 đ }", (x.totalOfCartShop() * 10) / 100)</div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Phí vận chuyển</h4>
+                                <div class="ml-auto font-weight-bold"> Free </div>
+                            </div>
+                            <hr>
+                            <div class="d-flex gr-total">
+                                <h5>Tổng cộng</h5>
+                                <div class="ml-auto h5">@String.Format("{0:#,##0 đ }", x.totalOfCartShop() + (x.totalOfCartShop() * 10) / 100)</div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                <!-- this row will not appear when printing -->
+                <div class="row no-print" style="text-align:center">
+                    <div class="col-lg-6">
+                    </div>
+                    <div class="col-lg-6">
+                        <a href='@Url.Action("Index", "Home")' class="ml-auto btn hvr-hover">&lt;&lt; Tiếp tục mua hàng</a>
+                    </div>
+                </div><br />
+            </section>
+            <!-- /.content -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+    <!-- /.content-wrapper -->

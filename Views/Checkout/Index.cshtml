@@ -1,0 +1,156 @@
+﻿@using WebCoSo.Models
+@model  WebCoSo.Models.KhachHang
+@{
+    ViewBag.Title = "Index";
+    CartShop x = ViewData["Cart"] as CartShop;
+}
+<div class="hero-wrap hero-bread" style="background-image: url(../Content/images/logo3.jpg);">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href='@Url.Action("Index","Home")'>Trang chủ</a></span></p>
+                <h1 class="mb-0 bread">Thanh toán</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="row">
+                <div class="col-md-12 ftco-animate">
+                        <table class="table">
+                            <thead class="thead-primary">
+                                <tr class="text-center">
+                                    <th>Hình sản phẩm </th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (CtDonHang i in x.SanPhamDC.Values)
+                                    {
+                                        <tr class="text-center">
+                                            <td class="image-prod">
+                                                <div class="img">
+                                                    <a href="#"><img class="img-fluid" src="@CosoKtpm.getImageOfProductByID(i.MaSP)" alt="" /></a>
+                                                </div>
+                                            </td>
+
+                                            <td class="product-name">
+                                                <h3>@CosoKtpm.getNameOfProductByID(i.MaSP)</h3>
+                                                <p>Far far away, behind the word mountains, far from the countries</p>
+                                            </td>
+
+                                            <td class="price">@String.Format("{0:#,##0 đ }", i.GiaBan)</td>
+
+                                            <td class="quantity" style="text-align:center">
+                                                <div class="input-group">
+                                                    <input type="text" name="quantity" class="quantity form-control input-number" value="@i.SoLuong" min="1" max="100">
+                                                </div>
+                                            </td>
+                                            <td class="total">@String.Format("{0:#,##0 đ }", x.moneyOfOneProduct(i))</td>
+                                        </tr><!-- END TR-->
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            @using (Html.BeginForm("SaveToDataBase", "Checkout", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-xl-7 ftco-animate">
+                        <form action="#" class="billing-form">
+                            <h3 class="mb-4 billing-heading">Thông tin khách hàng</h3>
+                            <div class="row align-items-end">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Họ tên khách hàng</label>
+                                        @Html.TextBoxFor(m => m.TenKH, new { @class = "form-control", @placehoder = "Display Name" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="SDT">Số điện thoại</label>
+                                        @Html.TextBoxFor(m => m.SDT, new { @class = "form-control", @placehoder = "Your phone number" })
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col-md-6">
+                                    <div class="form-group" style="margin-bottom: 0">
+                                        <label class="radio-inline">@Html.RadioButtonFor(m => m.GioiTinh, new { @name = "GioiTinh" }) Nam </label>
+                                        <label class="radio-inline">@Html.RadioButton("GioiTinh", false) Nữ </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ngaySinh">Ngày sinh</label>
+                                        @Html.TextBoxFor(m => m.NgaySinh, new { @type = "date", @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="addr">Địa chỉ</label>
+                                        @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control", @placehoder = "Customer address" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placehoder = "Email address" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="GhiChu">Thông tin ghi chú</label>
+                                        @Html.TextBoxFor(m => m.GhiChu, new
+                                        {
+                                            @class = "form-control",
+                                            @placehoder = "Thông tin ghi chú cần ghi nhận",
+                                            @rows = "8",
+                                            @style = "padding-bottom: 9xp"
+                                        })
+                                    </div>
+                                </div>
+                            </div>
+                        </form><!-- END -->
+                    </div>
+                    <div class="col-xl-5">
+                        <h3 class="mb-4 billing-heading">Chi tiết thanh toán</h3>
+                        <div class="col-md-12 d-flex mb-5">
+                            <div class="cart-detail cart-total p-3 p-md-4">
+                                <div class="cart-total mb-3">
+                                    <p class="d-flex">
+                                        <span>Tổng tiền hàng</span>
+                                        <span>@String.Format("{0:#,##0 đ }", x.totalOfCartShop())</span>
+                                    </p>
+                                    <p class="d-flex">
+                                        <span>Thuế VAT 10%</span>
+                                        <span>@String.Format("{0:#,##0 đ }", (x.totalOfCartShop() * 10) / 100)</span>
+                                    </p>
+                                    <hr>
+                                    <p class="d-flex total-price">
+                                        <span>Tổng thành tiền</span>
+                                        <span>@String.Format("{0:#,##0 đ }", x.totalOfCartShop() + (x.totalOfCartShop() * 10) / 100)</span>
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><a href='@Url.Action("Index","Cart")' class="btn btn-default icon-update py-3" style="background-color:#82AE46">Quay lại giỏ hàng</a></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-default icon-cart-arrow-down py-3"style="background-color:#82AE46">Thanh toán</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div> <!-- .col-md-8 -->
+    </div>
+</section> <!-- .section -->

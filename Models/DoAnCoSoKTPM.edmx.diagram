@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="75eff6e39de6462a88dcef8b178e9a87" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="CoSoKTPMDataModel.BaiViet" Width="1.5" PointX="6.375" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoSoKTPMDataModel.CtDonHang" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoSoKTPMDataModel.DonHang" Width="1.5" PointX="11.625" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoSoKTPMDataModel.KhachHang" Width="1.5" PointX="8.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoSoKTPMDataModel.LoaiSP" Width="1.5" PointX="1.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoSoKTPMDataModel.SanPham" Width="1.5" PointX="4.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoSoKTPMDataModel.TaiKhoan" Width="1.5" PointX="1.875" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="CoSoKTPMDataModel.FK__BaiViet__TaiKhoa__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="CoSoKTPMDataModel.FK__CtDonHang__MaSP__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="CoSoKTPMDataModel.FK__CtDonHang__SoDH__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="CoSoKTPMDataModel.FK__DonHang__MaKH__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="CoSoKTPMDataModel.FK__DonHang__TaiKhoa__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="CoSoKTPMDataModel.FK__SanPham__MaLoai__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="CoSoKTPMDataModel.FK__SanPham__TaiKhoa__36B12243" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
