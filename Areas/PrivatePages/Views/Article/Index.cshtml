@@ -1,0 +1,84 @@
+﻿@using WebCoSo.Models;
+@{ ViewBag.Title = "Index";
+                List<BaiViet> ds = ViewData["DanhSachBV"] as List<BaiViet>; }
+
+<style>
+    form {
+        display: inline;
+    }
+</style>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh sách bài viết</h1>
+            </div>
+            <div class="col-sm-6" style="text-align:right">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index","Dashboard")'>Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Bài viết đã kiểm duyệt</li>
+
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+            </div>
+            <!-- /.card -->
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Các tính năng mặc định</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tên bài viết</th>
+                                <th>Ngày đăng</th>
+                                <th>Tài khoản</th>
+                                <th>Số lần đọc</th>
+                                <th>Công cụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ foreach (BaiViet i in ds)
+                                            {
+                                <tr>
+                                    <td>@i.TenBV</td>
+                                    <td>@string.Format("{0: hh:mm [dd/MM/yyyy]}", i.NgayDang)</td>
+                                    <td>@i.TaiKhoan1.HoDem @i.TaiKhoan1.TenTV</td>
+                                    <td>@i.SoLanDoc</td>
+                                    <td>
+                                        @using (Html.BeginForm("Active", "Article", FormMethod.Post))
+                                        {
+                        <input type="hidden" name="maBaiViet" value="@i.MaBV" />
+                                            <button class="btn btn-success" title="Cho phép hiển thị bài viết trên các trang công khai">@ViewBag.taCuaNut</button>}
+
+                                        <button class="btn btn-default" title="Cho phép sửa bài viết...">Sửa</button>
+                                        @using (Html.BeginForm("Delete", "Article", FormMethod.Post))
+                                        {
+                        <input type="hidden" name="maBaiViet" value="@i.MaBV" />
+                                            <button class="btn btn-danger" title="Xóa bài viết...">Xóa</button>}
+
+                                    </td>
+                                </tr> } }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>

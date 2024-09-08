@@ -1,0 +1,77 @@
+﻿@using WebCoSo.Models;
+
+@{
+    ViewBag.Title = "Index";
+    List<DonHang> ds = ViewData["DanhsachDH"] as List<DonHang>;
+}
+<style>
+    form {
+        display: inline;
+    }
+</style>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh sách đơn hàng mới</h1>
+            </div>
+            <div class="col-sm-6" style="text-align:right">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index","Dashboard")'>Home</a></li>
+                    <li class="breadcrumb-item active">Đơn hàng mới tạo</li>
+
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Số đơn hàng</th>
+                                <th>Mã khách hàng</th>
+                                <th>Tài khoản</th>
+                                <td>Ngày đặt</td>
+                                <th>Địa chỉ GH</th>
+                                <th>Nhóm lệnh</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ foreach (DonHang i in ds)
+                               {
+                                    <tr>
+                                        <td>@i.MaKH</td>
+                                        <td>@i.SoDH</td>
+                                        <td>@i.TaiKhoan1.HoDem @i.TaiKhoan1.TenTV</td>
+                                        <td>@string.Format("{0: hh:mm [dd/MM/yyyy]}", i.NgayDat)</td>
+                                        <td>@string.Format("{0: hh:mm [dd/MM/yyyy]}", i.NgayGH)</td>
+                                        <td>@i.DiaChiGH</td>
+                                        <td>
+                                            @using (Html.BeginForm("Active", "NewOrder", FormMethod.Post))
+                                             {
+                                                <input type="hidden" name="maBaiViet" value="@i.SoDH" />
+                                                <button class="btn btn-success" title="Cho phép hiển thị đơn hàng">@ViewBag.taCuaNut</button>
+                                             }
+                                            @using (Html.BeginForm("Delete", "NewOrder", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="maBaiViet" value="@i.SoDH" />
+                                                <button class="btn btn-danger" title="Xóa đơn hàng...">Xóa</button>
+                                             }
+                                        </td>
+                                    </tr> 
+                               } 
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
